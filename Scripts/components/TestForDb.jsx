@@ -4,7 +4,7 @@ class TestForDb extends React.Component {
     render() {
         return (
             <div>
-                XD
+                XDddddddddsadasdasd
             </div>
         )
     }
