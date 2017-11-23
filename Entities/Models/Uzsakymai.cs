@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace project2.Entities.Models
 {
@@ -14,6 +15,7 @@ namespace project2.Entities.Models
         public decimal Kaina { get; set; }
         public DateTime? UzdarymoData { get; set; }
         public int Busena { get; set; }
+        [Key]
         public int Id { get; set; }
         public int FkPirkejas { get; set; }
 

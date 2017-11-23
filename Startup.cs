@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using project2.Entities.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace project2
 {
@@ -22,7 +25,15 @@ namespace project2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<Vartotojai, IdentityBuilder>(config =>
+            {
+                config.SignIn.RequireConfirmedEmail = true;
+            });
+
             services.AddMvc();
+
+            services.AddDbContext<AppDbContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("Servas")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,14 +1,23 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { AppContainer } from 'react-hot-loader'
 
-import Home from './components/Home.jsx'
-import TestForDb from './components/TestForDb.jsx'
-import Register from './components/Register/Register.jsx'
+import RoutesContainer from './RoutesContainer.jsx'
 
-ReactDOM.render(
-    <BrowserRouter>
-        <Route path='' component={Register} />
-    </BrowserRouter>
-    , document.getElementById('app')
-)
+const render = (ComponentToRender) => {
+    ReactDOM.render(
+        <AppContainer>
+            <ComponentToRender />
+        </AppContainer>,
+        document.getElementById('app')
+    )
+}
+
+render(RoutesContainer)
+
+if (module.hot) {
+    module.hot.accept('./RoutesContainer.jsx', () => {
+        const ChangedRoutesContainer = require('./RoutesContainer.jsx').default;
+        render(ChangedRoutesContainer)
+    })
+}
