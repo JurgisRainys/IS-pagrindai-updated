@@ -61,7 +61,11 @@ $textColor: #9999cc;
     border-radius: 3px;
 }
 
-#registration-submit-btn input:focus {
+.registration-btn-idle {
+    opacity: 1;
+}
+
+.registration-btn-registering {
     opacity: 0.7;
 }
 
@@ -82,7 +86,7 @@ $textColor: #9999cc;
     .registration-form > ul {
         list-style-type: none;
         padding: 0;
-        padding-top: 60px;    
+        padding-top: 60px;
         margin: 0;
         grid-column: 2;
         display: grid;
@@ -91,7 +95,7 @@ $textColor: #9999cc;
     }
 
     .registration-content-container > footer {
-        text-align: left;    
+        text-align: left;
         padding-top: 15px;
         border-top: 1px solid $copyrightColor;
         height: 100px;

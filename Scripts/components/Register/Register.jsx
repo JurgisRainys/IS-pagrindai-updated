@@ -15,7 +15,10 @@ class Register extends React.Component {
 
     xd (e) {
         e.preventDefault()
-        e.target.btn.value = 'Registruojama'
+
+        let btn = e.target.btn;
+        btn.value = 'Registruojama'
+        btn.className = 'registration-btn-registering'
 
         let email = e.target.email.value
         let password = e.target.password.value
@@ -31,8 +34,25 @@ class Register extends React.Component {
             phone
         }
 
-        api.post(`/api/Users/register`, registrationInfo)
-        e.target.btn.value = 'Registruoti'
+        let registrationSuccessful = false;
+
+        if (email && password && firstName && lastName && phone) {
+            api.post(`/api/Users/register`, registrationInfo)
+                .then(response => {
+                    if (response.ok) {
+                        registrationSuccessful = true;
+
+                    } else {
+                        console.log("erroras Register.jsx komponente")
+                    }
+                    btn.value = 'Registruoti'
+                    btn.className = 'registration-btn-idle'
+                })
+        }
+
+        if (registrationSuccessful) {
+            // redirectinsim, veliau implementuota bus
+        }
     }
 
     render () {
@@ -47,7 +67,7 @@ class Register extends React.Component {
                         <li><input type='text' name='firstName' placeholder="Vardas" /></li>
                         <li><input type='text' name='lastName' placeholder="Pavardė" /></li>
                         <li><input type='text' name='phone' placeholder="Tel. numeris" /></li>
-                        <li id="registration-submit-btn"><input value="Registruotis" name="btn" type="submit" /></li>
+                        <li id="registration-submit-btn"><input className='registration-btn-idle' value="Registruotis" name="btn" type="submit" /></li>
                     </ul>
                 </form>
                 <footer>

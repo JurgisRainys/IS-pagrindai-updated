@@ -65,7 +65,7 @@ namespace project2.Controllers
                 request.Password
             );
 
-            _dbContext.Vartotojai.Add(vartotojas);
+            //_dbContext.Vartotojai.Add(vartotojas);
         }
     }
 }
