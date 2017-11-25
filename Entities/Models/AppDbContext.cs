@@ -2,10 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace project2.Entities.Models
 {
-    public partial class AppDbContext : IdentityDbContext
+    public partial class AppDbContext : IdentityDbContext<Vartotojai, Role, int>
     {
         public virtual DbSet<Ivertinimai> Ivertinimai { get; set; }
         public virtual DbSet<Komentarai> Komentarai { get; set; }
@@ -36,7 +37,7 @@ namespace project2.Entities.Models
             {
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Aprasymas)
                     .IsRequired()
@@ -72,7 +73,7 @@ namespace project2.Entities.Models
             {
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Busena).HasColumnName("busena");
 
@@ -120,7 +121,7 @@ namespace project2.Entities.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -135,7 +136,7 @@ namespace project2.Entities.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.FkPirkejas).HasColumnName("fk_pirkejas");
 
@@ -166,7 +167,7 @@ namespace project2.Entities.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Busena).HasColumnName("busena");
 
@@ -195,7 +196,7 @@ namespace project2.Entities.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -208,7 +209,7 @@ namespace project2.Entities.Models
             {
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Busena).HasColumnName("busena");
 
@@ -262,7 +263,7 @@ namespace project2.Entities.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Aprasymas)
                     .IsRequired()
@@ -290,7 +291,7 @@ namespace project2.Entities.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -305,7 +306,7 @@ namespace project2.Entities.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -318,7 +319,7 @@ namespace project2.Entities.Models
             {
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Busena).HasColumnName("busena");
 
@@ -363,7 +364,7 @@ namespace project2.Entities.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -378,7 +379,7 @@ namespace project2.Entities.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.FkPreke).HasColumnName("fk_preke");
 
@@ -405,7 +406,7 @@ namespace project2.Entities.Models
             {
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Busena).HasColumnName("busena");
 
@@ -442,7 +443,7 @@ namespace project2.Entities.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -457,7 +458,7 @@ namespace project2.Entities.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.FkPreke).HasColumnName("fk_preke");
 
@@ -480,7 +481,7 @@ namespace project2.Entities.Models
             {
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Adresas)
                     .HasColumnName("adresas")
@@ -534,7 +535,7 @@ namespace project2.Entities.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    ;//.ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -542,6 +543,7 @@ namespace project2.Entities.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

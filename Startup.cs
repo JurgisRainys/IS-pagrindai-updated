@@ -25,10 +25,12 @@ namespace project2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<Vartotojai, IdentityBuilder>(config =>
+            services.AddIdentity<Vartotojai, Role>(config =>
             {
                 config.SignIn.RequireConfirmedEmail = true;
-            });
+            })
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
 
             services.AddMvc();
 

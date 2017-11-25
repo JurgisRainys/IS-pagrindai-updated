@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace project2.Entities.Models
 {
@@ -10,7 +11,8 @@ namespace project2.Entities.Models
         public DateTime Data { get; set; }
         public string Pavadinimas { get; set; }
         public int Busena { get; set; }
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int Id { get; set; }
         public int FkVartotojas { get; set; }
         public int FkPreke { get; set; }

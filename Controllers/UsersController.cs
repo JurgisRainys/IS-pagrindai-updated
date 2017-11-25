@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using project2.Entities.DataContracts;
 using project2.Entities.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace project2.Controllers
 {
@@ -14,11 +15,15 @@ namespace project2.Controllers
     [Route("api/Users")]
     public class UsersController : Controller
     {
+        private readonly UserManager<Vartotojai> _userManager;
+        private readonly SignInManager<Vartotojai> _signInManager;
         private readonly AppDbContext _dbContext;
 
-        public UsersController(AppDbContext dbContext)
+        public UsersController(AppDbContext dbContext, UserManager<Vartotojai> userManager, SignInManager<Vartotojai> signInManager)
         {
             _dbContext = dbContext;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         // GET: api/Users
@@ -55,17 +60,31 @@ namespace project2.Controllers
 
         // POST: api/Users/register
         [HttpPost("register")]
-        public void Post([FromBody] RegistrationInfo request)
+        public async Task<IActionResult> Post([FromBody] RegistrationInfo request)
         {
             Vartotojai vartotojas = new Vartotojai(
                 request.Email,
                 request.FirstName, 
                 request.LastName,
-                request.Phone, 
+                request.Phone,
                 request.Password
             );
 
-            //_dbContext.Vartotojai.Add(vartotojas);
+
+            VartotojoTipai basicTipas = new VartotojoTipai();
+            basicTipas.Name = "basic-vartotojas";
+
+            //_dbContext.VartotojoTipai.Add(basicTipas);
+
+            vartotojas.TipasNavigation = basicTipas;
+
+            var result = await _userManager.CreateAsync(vartotojas, request.Password);
+
+            _dbContext.Vartotojai.Add(vartotojas);
+
+            _dbContext.SaveChanges();
+
+            return Ok();
         }
     }
 }

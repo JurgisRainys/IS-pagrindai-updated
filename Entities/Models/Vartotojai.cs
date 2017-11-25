@@ -30,6 +30,7 @@ namespace project2.Entities.Models
             Statymai = new HashSet<Statymai>();
             StebimosPrekes = new HashSet<StebimosPrekes>();
             Uzsakymai = new HashSet<Uzsakymai>();
+            SukurimoData = DateTime.Today;
 
             ElPastas = Email;
             Vardas = FirstName;
@@ -47,9 +48,6 @@ namespace project2.Entities.Models
         public DateTime SukurimoData { get; set; }
         public string Slaptazodis { get; set; }
         public int Tipas { get; set; }
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public override int Id { get; set; }
-
         public VartotojoTipai TipasNavigation { get; set; }
         public ICollection<Ivertinimai> IvertinimaiFkPirkejasNavigation { get; set; }
         public ICollection<Ivertinimai> IvertinimaiFkTiekejasNavigation { get; set; }
